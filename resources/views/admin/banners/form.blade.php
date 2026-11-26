@@ -17,12 +17,9 @@
       <label>Second button <input name="cta2" value="{{ old('cta2', $banner->cta2) }}"></label>
       <label>Note <input name="note" value="{{ old('note', $banner->note) }}"></label>
     </div>
-    <label>Image path <input name="image" value="{{ old('image', $banner->image) }}" placeholder="/images/your-photo.jpg"></label>
-    <label>Or upload <input type="file" name="photo" accept="image/*"></label>
-    <div class="split">
-      <label>Image alt <input name="image_alt" value="{{ old('image_alt', $banner->image_alt) }}"></label>
-      <label>Small circle image <input name="image2" value="{{ old('image2', $banner->image2) }}"></label>
-    </div>
+    @include('admin.partials.photo', ['name' => 'image', 'value' => $banner->image, 'label' => 'Image path', 'fileName' => 'photo', 'fileLabel' => 'Or upload'])
+    <label>Image alt <input name="image_alt" value="{{ old('image_alt', $banner->image_alt) }}"></label>
+    @include('admin.partials.photo', ['name' => 'image2', 'value' => $banner->image2, 'label' => 'Small circle image', 'fileName' => null])
     <div class="split">
       <label>Chip label <input name="chip_top" value="{{ old('chip_top', $banner->chip_top) }}"></label>
       <label>Chip text <input name="chip" value="{{ old('chip', $banner->chip) }}"></label>

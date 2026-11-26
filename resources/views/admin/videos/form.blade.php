@@ -12,8 +12,7 @@
       <label>Label on the frame <input name="label" value="{{ old('label', $video->label) }}" required placeholder="POSHAK"></label>
       <label>Title <input name="title" value="{{ old('title', $video->title) }}" required></label>
     </div>
-    <label>Poster path <input name="poster" value="{{ old('poster', $video->poster) }}" placeholder="/images/..."></label>
-    <label>Poster image <input type="file" name="photo" accept="image/*"></label>
+    @include('admin.partials.photo', ['name' => 'poster', 'value' => $video->poster, 'label' => 'Poster path', 'fileName' => 'photo', 'fileLabel' => 'Poster image'])
     <label>Video URL <input name="video_url" value="{{ old('video_url', $video->video) }}" placeholder="YouTube link or /videos/uploads/clip.mp4"></label>
     <label>Or upload an mp4 <input type="file" name="clip" accept="video/mp4,video/webm"></label>
     <div class="split">

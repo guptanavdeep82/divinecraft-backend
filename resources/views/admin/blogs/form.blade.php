@@ -12,11 +12,8 @@
     <label>Slug <input name="slug" value="{{ old('slug', $blog->slug) }}" placeholder="Left blank to build it from the title"></label>
     <label>Excerpt <textarea name="excerpt" rows="2" required>{{ old('excerpt', $blog->excerpt) }}</textarea></label>
     <label>Story <textarea name="body" rows="12" required>{{ old('body', $blog->body) }}</textarea></label>
-    <div class="split">
-      <label>Author <input name="author" value="{{ old('author', $blog->author) }}"></label>
-      <label>Image path <input name="image" value="{{ old('image', $blog->image) }}" placeholder="/images/..."></label>
-    </div>
-    <label>Replace image <input type="file" name="photo" accept="image/*"></label>
+    <label>Author <input name="author" value="{{ old('author', $blog->author) }}"></label>
+    @include('admin.partials.photo', ['name' => 'image', 'value' => $blog->image, 'label' => 'Image path', 'fileName' => 'photo', 'fileLabel' => 'Replace image'])
     <label class="checks"><input type="checkbox" name="published" value="1" @checked(old('published', $blog->exists ? $blog->published_at !== null : true))> Show on the journal</label>
     @if ($errors->any())
       <p class="error">{{ $errors->first() }}</p>

@@ -10,7 +10,7 @@
     <tbody>
       @forelse ($videos as $video)
         <tr>
-          <td><img class="thumb" src="{{ env('FRONTEND_URL', 'http://localhost:3010') }}{{ $video->poster }}" alt=""></td>
+          <td>@if ($video->poster)<img class="thumb" src="{{ \App\Support\Media::url($video->poster) }}" alt="">@endif</td>
           <td>{{ $video->label }}<br><small>{{ $video->is_active ? 'Live' : 'Hidden' }}</small></td>
           <td>{{ $video->title }}</td>
           <td>{{ $video->video ? 'Attached' : 'Poster only' }}</td>
@@ -18,7 +18,7 @@
             <a href="{{ route('admin.videos.edit', $video) }}">Edit</a>
             <form method="post" action="{{ route('admin.videos.destroy', $video) }}" style="display:inline" onsubmit="return confirm('Remove this video?')">
               @csrf @method('DELETE')
-              <button type="submit" style="background:none;border:0;color:#9e1b32;cursor:pointer">Remove</button>
+              <button class="link" type="submit">Remove</button>
             </form>
           </td>
         </tr>

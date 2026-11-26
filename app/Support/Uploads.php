@@ -12,7 +12,7 @@ class Uploads
             return $current;
         }
 
-        $dir = base_path('../public/images/uploads');
+        $dir = public_path('images/uploads');
         if (! is_dir($dir)) {
             mkdir($dir, 0775, true);
         }
@@ -30,7 +30,7 @@ class Uploads
             return $current;
         }
 
-        $dir = base_path('../public/videos/uploads');
+        $dir = public_path('videos/uploads');
         if (! is_dir($dir)) {
             mkdir($dir, 0775, true);
         }

@@ -15,7 +15,7 @@ class OrderController extends Controller
     {
         $status = $request->query('status');
         $orders = Order::query()
-            ->with(['product', 'items'])
+            ->with(['product', 'items.product'])
             ->when(in_array($status, ['pending', 'paid', 'failed'], true), fn ($query) => $query->where('status', $status))
             ->latest()
             ->get();
@@ -25,7 +25,7 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
-        $order->load(['product', 'payments', 'items']);
+        $order->load(['product', 'payments', 'items.product']);
 
         return view('admin.orders.show', compact('order'));
     }

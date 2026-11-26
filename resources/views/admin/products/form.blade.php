@@ -36,8 +36,7 @@
       <label>Deity <input name="deity" value="{{ old('deity', $product->deity) }}"></label>
       <label>Colour <input name="colour" value="{{ old('colour', $product->colour) }}" placeholder="Peela"></label>
     </div>
-    <label>Image path <input name="image" value="{{ old('image', $product->image) }}" placeholder="/images/your-photo.jpg"></label>
-    <label>Or upload a photo <input type="file" name="photo" accept="image/*"></label>
+    @include('admin.partials.photo', ['name' => 'image', 'value' => $product->image, 'label' => 'Image path', 'fileName' => 'photo'])
     <label>Description <textarea name="description" rows="4">{{ old('description', $product->description) }}</textarea></label>
     <div class="checks">
       @foreach ($groups as $key => $label)

@@ -17,10 +17,16 @@
       <tr><th>Poshak</th><td>
         @if ($order->items->isNotEmpty())
           @foreach ($order->items as $item)
-            <div>{{ $item->name }} × {{ $item->qty }} · ₹{{ number_format($item->price) }}</div>
+            <div class="line">
+              @if ($item->product?->image)<img class="thumb" src="{{ \App\Support\Media::url($item->product->image) }}" alt="">@endif
+              <div>{{ $item->name }} × {{ $item->qty }} · ₹{{ number_format($item->price) }}</div>
+            </div>
           @endforeach
         @else
-          {{ $order->product?->name ?? '—' }}
+          <div class="line">
+            @if ($order->product?->image)<img class="thumb" src="{{ \App\Support\Media::url($order->product->image) }}" alt="">@endif
+            <div>{{ $order->product?->name ?? '—' }}</div>
+          </div>
         @endif
       </td></tr>
       <tr><th>Personalise</th><td>{{ $order->personalise ? 'Yes' : 'No' }}{{ $order->embroidery_name ? ' · '.$order->embroidery_name : '' }}{{ $order->script ? ' · '.$order->script : '' }}{{ $order->zari ? ' · '.$order->zari : '' }}</td></tr>
